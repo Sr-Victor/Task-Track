@@ -1,7 +1,7 @@
 import random
 import uuid
-
-
+import sqlite3 as dbs
+import json
 print("""
 
  Please, select a option:
@@ -16,12 +16,33 @@ print("""
 
 opt = input(": ")
 
+def openDB(taskName, id, description, status, dateStart, dateUpdate):
+  nmTask = [0];
+  arrayList = {
+    f"Task{nmTask.append()}"
+    "Task name": taskName,
+    "Task ID": id,
+    "Description": description,
+    "Status": status,
+    "DaT": dateStart,
+    "DaU": dateUpdate,
+  }
+  with open("databaseCrud.json", "r+") as db:
+    if db.readline() == "}":
+      db.write('\n');
+    jsConvert = json.dumps(arrayList)
+    db.write(jsConvert)
+
+openDB("taskName", "id", "description", "status", "dateStart", "dateUpdate")
+
+exit()
+
 if(opt == ""):
   print("Please write something!!")
 
 elif(opt == "1"):
-  print("Sure, answer that questions: ")
+  print("Sure, answer that questions: ");
   taskID = uuid.uuid1();
   taskName = input("Task Name: ");
-  print(f"This task id is: {taskID}")
+  taskDescription = input("Please, talk about your task: ");
   pass
